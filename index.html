@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 100%;  /* The height is 400 pixels */
+        width: 100%;  /* The width is the width of the web page */
+        left: 0;
+        position: absolute;
+        top:0;
+        background-color: grey;
+}
+    </style>
+  </head>
+  <body>
+    <h3>Big Cedar Game</h3>
+    <!--The div element for the map -->
+    <div id="map"></div>
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {lat: 36.537819, lng: -93.277591};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 19, center: uluru, mapTypeId: 'terrain'});
+
+
+// The marker, positioned at Uluru  
+var Present2 = 'Present2.png';
+  var homemarker = new google.maps.Marker({
+    position: {lat: 36.537819, lng: -93.277591},
+    map: map,
+    icon: Present2
+});
+var Candy = 'Candy.png';
+  var Parkinglot = new google.maps.Marker({
+    position: {lat: 36.538122, lng: -93.277575},
+    map: map,
+    icon: Candy
+  });
+
+var Chestnut = 'Chestnut.png';
+  var Marina = new google.maps.Marker({
+    position: {lat: 36.537066, lng: -93.279192},
+    map: map,
+    icon: Chestnut
+  });
+
+var FishingRod = 'FishingRod.png';
+  var MarinaSanta = new google.maps.Marker({
+    position: {lat: 36.537048, lng: -93.278300},
+    map: map,
+    icon: FishingRod
+  });
+var Present3 = 'Present3.png';
+  var MarinaStore = new google.maps.Marker({
+    position: {lat: 36.536701, lng: -93.279978},
+    map: map,
+    icon: Present3
+  });
+var Present1 = 'Present1.png';
+  var Frontofhouse = new google.maps.Marker({
+    position: {lat: 36.537839, lng: -93.27585},
+    map: map,
+    icon: Present1
+  });
+var Santa = 'Santa.png';
+  var WarmanHouse = new google.maps.Marker({
+    position: {lat: 36.536601, lng: -93.276519},
+    map: map,
+    icon: Santa
+  });
+var MrsClause = 'MrsClause.png';
+  var Registration = new google.maps.Marker({
+    position: {lat: 36.537036, lng: -93.276248},
+    map: map,
+    icon: MrsClause
+  });
+var Snowflake = 'Snowflake.png';
+  var TrumanCafe = new google.maps.Marker({
+    position: {lat: 36.536346, lng: -93.275826},
+    map: map,
+    icon: Snowflake
+  });
+var Toycar = 'Toycar.png';
+  var Minigolf = new google.maps.Marker({
+    position: {lat: 36.536438, lng: -93.275397},
+    map: map,
+    icon: Toycar
+  });
+var Train = 'Train.png';
+  var Uncle_Bucks = new google.maps.Marker({
+    position: {lat: 36.539518, lng: -93.276237},
+    map: map,
+    icon: Train
+  });
+var Raindeer_Poop = 'RaindeerPoop.png';
+  var WildernessClub = new google.maps.Marker({
+    position: {lat: 36.538587, lng: -93.281730},
+    map: map,
+    icon: Raindeer_Poop
+  });
+var Snowman = 'Snowman.png';
+  var Parking_WildernessClub = new google.maps.Marker({
+    position: {lat: 36.537538, lng: -93.279591},
+    map: map,
+    icon: Snowman
+  });
+var Present4 = 'Present4.png';
+  var Waterfall = new google.maps.Marker({
+    position: {lat: 36.537601, lng: -93.276857},
+    map: map,
+    icon: Present4
+  });
+var Pirates = 'Pirates.png';
+  var Paddleboats = new google.maps.Marker({
+    position: {lat: 36.536466, lng: -93.279566},
+    map: map,
+    icon: Pirates
+  });
+var Crossiant = 'crossiant.png';
+  var FallsLodge = new google.maps.Marker({
+    position: {lat: 36.536164, lng: -93.271904},
+    map: map,
+    icon: Crossiant
+  });
+var Penguin = 'Penguin.png';
+  var TurtlePond = new google.maps.Marker({
+    position: {lat: 36.537130, lng: -93.277687},
+    map: map,
+    icon: Penguin
+  });
+var Vampire = 'Vampire.png';
+  var TurtlePond2 = new google.maps.Marker({
+    position: {lat: 36.536864, lng: -93.277557},
+    map: map,
+    icon: Vampire
+  });
+}
+
+
+    </script>
+    <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtrz3QcnBjpBQ2TY8tZ-cisIp2BvrcoDc&callback=initMap">
+    </script>
+  </body>
+</html>
