@@ -36,9 +36,9 @@ else {
 }
 function set_my_position(position) {
   var MyLocation = 'Detective.png';
-  var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   var Me = new google.maps.Marker({
-    position: location,
+    position: {position.coords.latitude, position.coords.longitude};
     map: map,
     icon: Dectective  
 }); 
