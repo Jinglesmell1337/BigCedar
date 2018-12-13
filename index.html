@@ -26,8 +26,17 @@ function initMap() {
   // The map, centered at Uluru
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 19, center: uluru, mapTypeId: 'hybrid'});
-
-
+// find my location
+  if(navigator.geolocation) {
+    navigator.geolocation.watchPosition(set_my_position);
+}
+else {
+    alert("Geolocation doesn't work in your browser");
+}
+function set_my_position() {
+  var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  
+} 
 // The marker, positioned at Uluru  
 var Present2 = 'Present2.png';
   var homemarker = new google.maps.Marker({
