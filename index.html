@@ -25,7 +25,7 @@ function initMap() {
   var uluru = {lat: 36.537819, lng: -93.277591};
   // The map, centered at Uluru
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 19, center: uluru, mapTypeId: 'terrain'});
+      document.getElementById('map'), {zoom: 19, center: uluru, mapTypeId: 'hybrid'});
 
 
 // The marker, positioned at Uluru  
@@ -139,7 +139,7 @@ var Vampire = 'Vampire.png';
     map: map,
     icon: Vampire
   });
-var ChristmasTree = 'ChristmasTree';
+var ChristmasTree = 'ChristmasTree.png';
     var BushHouse = new google.maps.Marker({
       position: {lat:36.537840, -93.278558},
       map: map,
