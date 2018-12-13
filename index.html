@@ -35,10 +35,15 @@ else {
     alert("Geolocation doesn't work in your browser");
 }
 function set_my_position(position) {
-  var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   var MyLocation = 'Detective.png';
+  var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+  var Me = new google.maps.Marker({
+    position: location,
+    map: map,
+    icon: Dectective
   
-} 
+  
+}); 
 // The marker, positioned at Uluru  
 var Present2 = 'Present2.png';
   var homemarker = new google.maps.Marker({
