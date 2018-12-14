@@ -27,18 +27,19 @@ function initMap() {
   var map = new google.maps.Map(
       document.getElementById('map'), {zoom: 19, center: uluru, mapTypeId: 'hybrid'});
 // find my location
+  markOutLocation = function (lat, long) {
+    var latLong = new google.maps.LatLng (lat,long),
+        marker = new google.maps.marker(latLong);
   var Me = 'Detective.png'
- function getlocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
- } else {
-    alert("Geolocation doesn't work in your browser");
- }
+});
+  
+  // Check for geolocation support  
+  if(navigator.geolocation) {
+    navigator.geolocation.watchPosition(set_my_position);
 }
-  function showPosition(position) {
-    lat = position.coords.latitude;
-    lon = position.coords.longitude;
-    latlon = new google.maps.Latlng(lat, lon);
+else {
+    alert("Geolocation doesn't work in your browser");
+}  
 // The marker, positioned at Uluru  
 var Present2 = 'Present2.png';
   var homemarker = new google.maps.Marker({
