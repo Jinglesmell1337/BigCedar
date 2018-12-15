@@ -1,172 +1,136 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <style>
-       /* Set the size of the div element that contains the map */
-      #map {
-        height: 100%;  /* The height is 400 pixels */
-        width: 100%;  /* The width is the width of the web page */
-        left: 0;
-        position: absolute;
-        top:0;
-        background-color: grey;
+   <head>
+    <title>Big Cedar Game</title>
+      <meta name="description" content="Big Cedar">
+      <meta name="keywords" content="BigCedar, Whangamata, map">
+      <meta name="author" content="Chris Moore">
+      
+      <style>
+#BigCedar_map {
+    height: 100%;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;  
+    background-color: grey;
 }
-    </style>
+</style>
   </head>
-  <body>
-    <h3>Big Cedar Game</h3>
-    <!--The div element for the map -->
-    <div id="map"></div>
+    
+  <body style="background-color:#9BDCB7;">
+    <div id="BigCedar_map"></div>
+      
+      <form>
+      <!--Select an emoji-->
+        <select id="icon_to_use">
+            <option value="Present1.png">Present</option>
+            <option value="Present2.png">Gift</option>
+            <option value="Present3.png">Package</option>
+	          <option value="ChristmasTree.png">Christmas_Tree</option>
+	          <option value="Candy.png">Candy</option>
+  	        <option value="Chestnut.png">Chestnut</option>
+  	        <option value="FishingRod.png">Fishing Rod</option>
+            <option value="Crossiant.png">Crossiant</option>
+  	        <option value="MrsClause.png">Mrs_Clause</option>
+  	        <option value="Penguin.png">Penguin</option>
+  	        <option value="Pirates.png">Pirates</option>
+  	        <option value="RaindeerPoop.png">Raindeer_Poop</option>
+  	        <option value="Santa.png">Santa</option>
+  	        <option value="Snowflake.png">Snowflake</option>
+  	        <option value="Snowman.png">Snowman</option>
+  	        <option value="Toycar.png">Toy_Car</option>
+  	        <option value="Train.png">Toy_Train</option>
+  	        <option value="Vampire.png">Vampire</option>
+        </select>
+      </form>
+      
+    
     <script>
-// Initialize and add the map
-function initMap() {
-  // The location of Uluru
-  var uluru = {lat: 36.537819, lng: -93.277591};
-  // The map, centered at Uluru
-  var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 19, center: uluru, mapTypeId: 'hybrid'});
-// find my location
-  markOutLocation = function (lat, long) {
-    var latLong = new google.maps.LatLng (lat,long),
-        marker = new google.maps.marker(latLong);
-  var Me = 'Detective.png'
-});
-  
-  // Check for geolocation support  
-  if(navigator.geolocation) {
+    var BigCedar_map;
+    var score;
+    var tolerance = 10;
+    var old_position;
+    var all_markers = [];
+    var data = `36.537819 -93.27791 Present2.png
+		36.538122 -93.277575 Candy.png
+		36.537056 -93.279192 Chestnut.png
+		36.537048 -93.278300 FishingRod.png
+		36.536701 -93.2779978 Present3.png
+		36.537839 -93.27585 Present1.png
+		36.5536601 -93.276519 Santa.png
+		36.537036 -93.276248 MrsClause.png
+		36.536346 -93.275826 Snowflake.png
+		36.536438 -93.275397 Toycar.png
+		36.539518 -93.276237 Train.png
+		36.538587 -93.281730 RaindeerPoop.png
+		36.537538 -93.279591 Snowman.png
+		36.537601 -93.276857 Present4.png
+		36.536466 -93.2795566 Pirates.png
+		36.536164 - 93.271904 Crossiant.png
+		36.537130 -93.277687 Penguin.png
+		36.536864 -93.277557 Vampire.png`;
+    var markers = data.split("\n");
+    
+    function initMap() {
+        BigCedar_map = new google.maps.Map(document.getElementById('BigCedar_map'), {zoom: 16,center: {lat: 36.537819, lng: -93.277591}
+        });    
+        
+        old_position = new google.maps.Marker({
+        position: {lat: 36.537819, lng: -93.277591},
+        map: BigCedar_map,
+        });
+        
+        for (var i = 0; i < markers.length; i++) {
+            var marker_data = markers[i].trim();
+            marker_data = marker_data.split(" ");
+            var latitude = marker_data[0];
+            var longitude = marker_data[1];
+            var emoji = marker_data[2];
+            var marker_position = new google.maps.LatLng(latitude, longitude);
+            var marker = new google.maps.Marker({
+                position: marker_position,
+                map: BigCedar_map,
+                icon: emoji
+            });
+            all_markers.push(marker);
+        }
+       
+        if(navigator.geolocation) {
     navigator.geolocation.watchPosition(set_my_position);
 }
 else {
     alert("Geolocation doesn't work in your browser");
-}  
-// The marker, positioned at Uluru  
-var Present2 = 'Present2.png';
-  var homemarker = new google.maps.Marker({
-    position: {lat: 36.537819, lng: -93.277591},
-    map: map,
-    icon: Present2
-});
-var Candy = 'Candy.png';
-  var Parkinglot = new google.maps.Marker({
-    position: {lat: 36.538122, lng: -93.277575},
-    map: map,
-    icon: Candy
-  });
-
-var Chestnut = 'Chestnut.png';
-  var Marina = new google.maps.Marker({
-    position: {lat: 36.537066, lng: -93.279192},
-    map: map,
-    icon: Chestnut
-  });
-
-var FishingRod = 'FishingRod.png';
-  var MarinaSanta = new google.maps.Marker({
-    position: {lat: 36.537048, lng: -93.278300},
-    map: map,
-    icon: FishingRod
-  });
-var Present3 = 'Present3.png';
-  var MarinaStore = new google.maps.Marker({
-    position: {lat: 36.536701, lng: -93.279978},
-    map: map,
-    icon: Present3
-  });
-var Present1 = 'Present1.png';
-  var Frontofhouse = new google.maps.Marker({
-    position: {lat: 36.537839, lng: -93.27585},
-    map: map,
-    icon: Present1
-  });
-var Santa = 'Santa.png';
-  var WarmanHouse = new google.maps.Marker({
-    position: {lat: 36.536601, lng: -93.276519},
-    map: map,
-    icon: Santa
-  });
-var MrsClause = 'MrsClause.png';
-  var Registration = new google.maps.Marker({
-    position: {lat: 36.537036, lng: -93.276248},
-    map: map,
-    icon: MrsClause
-  });
-var Snowflake = 'Snowflake.png';
-  var TrumanCafe = new google.maps.Marker({
-    position: {lat: 36.536346, lng: -93.275826},
-    map: map,
-    icon: Snowflake
-  });
-var Toycar = 'Toycar.png';
-  var Minigolf = new google.maps.Marker({
-    position: {lat: 36.536438, lng: -93.275397},
-    map: map,
-    icon: Toycar
-  });
-var Train = 'Train.png';
-  var Uncle_Bucks = new google.maps.Marker({
-    position: {lat: 36.539518, lng: -93.276237},
-    map: map,
-    icon: Train
-  });
-var Raindeer_Poop = 'RaindeerPoop.png';
-  var WildernessClub = new google.maps.Marker({
-    position: {lat: 36.538587, lng: -93.281730},
-    map: map,
-    icon: Raindeer_Poop
-  });
-var Snowman = 'Snowman.png';
-  var Parking_WildernessClub = new google.maps.Marker({
-    position: {lat: 36.537538, lng: -93.279591},
-    map: map,
-    icon: Snowman
-  });
-var Present4 = 'Present4.png';
-  var Waterfall = new google.maps.Marker({
-    position: {lat: 36.537601, lng: -93.276857},
-    map: map,
-    icon: Present4
-  });
-var Pirates = 'Pirates.png';
-  var Paddleboats = new google.maps.Marker({
-    position: {lat: 36.536466, lng: -93.279566},
-    map: map,
-    icon: Pirates
-  });
-var Crossiant = 'Crossiant.png';
-  var FallsLodge = new google.maps.Marker({
-    position: {lat: 36.536164, lng: -93.271904},
-    map: map,
-    icon: Crossiant
-  });
-var Penguin = 'Penguin.png';
-  var TurtlePond = new google.maps.Marker({
-    position: {lat: 36.537130, lng: -93.277687},
-    map: map,
-    icon: Penguin
-  });
-var Vampire = 'Vampire.png';
-  var TurtlePond2 = new google.maps.Marker({
-    position: {lat: 36.536864, lng: -93.277557},
-    map: map,
-    icon: Vampire
-  });
-var ChristmasTree = 'ChristmasTree.png';
-    var BushHouse = new google.maps.Marker({
-      position: {lat:36.537840, lng: -93.278558},
-      map: map,
-      icon: ChristmasTree
-  });
 }
-
+       }   
+    
+    function set_my_position(position){
+        old_position.setMap(null);
+        
+        var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var marker = new google.maps.Marker({
+                position: pos,
+                map: BigCedar_map
+            });
+        
+        old_position = marker;
+        for (var i = 0; i < all_markers.length; i++) {
+            var distance = google.maps.geometry.spherical.computeDistanceBetween(pos, all_markers[i].getPosition());
+        if(distance < tolerance){
+            var what_is_it = all_markers[i].getIcon();
+            what_is_it = what_is_it.replace(".png", "");
+            alert("Found the " + what_is_it );
+            all_markers[i].setMap(null);
+          }
+    }
+          
+    }
     </script>
-    <!--Load the API from the specified URL
-    * The async attribute allows the browser to render the page while the API loads
-    * The key parameter will contain your own API key (which is not needed for this tutorial)
-    * The callback parameter executes the initMap() function
-    -->
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtrz3QcnBjpBQ2TY8tZ-cisIp2BvrcoDc&callback=initMap">
-    </script>
+      
+      <script async defer
+              src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtrz3QcnBjpBQ2TY8tZ-cisIp2BvrcoDc&callback=initMap&libraries=geometry">
+      </script>    
   </body>
-</html>
+</html> 
+  
