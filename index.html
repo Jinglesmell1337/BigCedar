@@ -51,36 +51,35 @@
     <script>
     var BigCedar_map;
     var score;
-    var tolerance = 10;
+    var tolerance = 5;
     var old_position;
     var all_markers = [];
-    var data = `36.537819 -93.27791 Present2.png
-		36.538122 -93.277575 Candy.png
-		36.537056 -93.279192 Chestnut.png
-		36.537048 -93.278300 FishingRod.png
-		36.536701 -93.2779978 Present3.png
-		36.537839 -93.27585 Present1.png
-		36.5536601 -93.276519 Santa.png
-		36.537036 -93.276248 MrsClause.png
-		36.536346 -93.275826 Snowflake.png
-		36.536438 -93.275397 Toycar.png
-		36.539518 -93.276237 Train.png
-		36.538587 -93.281730 RaindeerPoop.png
-		36.537538 -93.279591 Snowman.png
-		36.537601 -93.276857 Present4.png
-		36.536466 -93.2795566 Pirates.png
-		36.536164 -93.271904 Crossiant.png
-		36.537130 -93.277687 Penguin.png
-		36.536864 -93.277557 Vampire.png
-		36.533140 -93.275120 Detective.png`;
+    var data = `40.292557 -74.658392 Present2.png
+		40.292670 -74.658405 Candy.png
+		40.292818 -74.658464 Chestnut.png
+		40.293777 -74.658807 FishingRod.png
+		40.292627 -74.658033 Present3.png
+		40.293270 -74.659444 Present1.png
+		40.293490 -74.659288 Santa.png
+		40.293487 -74.658983 MrsClause.png
+		40.293348 -74.659643 Snowflake.png
+		40.293170 -74.659202 Toycar.png
+		40.293073 -74.658921 Train.png
+		40.293718 -74.660032 RaindeerPoop.png
+		40.293672 -74.658582 Snowman.png
+		40.293426 -74.658252 Present4.png
+		40.293055 -74.657560 Pirates.png
+		40.292734 -74.657472 Crossiant.png
+		40.293276 -74.658506 Penguin.png
+		40.293074 -74.657808 Vampire.png`;
     var markers = data.split("\n");
     
     function initMap() {
-        BigCedar_map = new google.maps.Map(document.getElementById('BigCedar_map'), {zoom: 16,center: {lat: 36.537819, lng: -93.277591}
+        BigCedar_map = new google.maps.Map(document.getElementById('BigCedar_map'), {zoom: 19,center: {lat: 40.292633, lng: -74.658209}
         });    
         
         old_position = new google.maps.Marker({
-        position: {lat: 36.537819, lng: -93.277591},
+        position: {lat: 40.292633, lng: -74.658209},
         map: BigCedar_map,
         });
         
@@ -111,8 +110,7 @@ else {
         old_position.setMap(null);
         
         var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            var Detective = 'Detective.png';
-	    var marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
                 position: pos,
                 map: BigCedar_map
             });
@@ -123,7 +121,7 @@ else {
         if(distance < tolerance){
             var what_is_it = all_markers[i].getIcon();
             what_is_it = what_is_it.replace(".png", "");
-            alert("Found the " + what_is_it );
+            alert("Found the " + what_is_it +" Your score is" + score+=10 );
             all_markers[i].setMap(null);
           }
     }
@@ -135,5 +133,4 @@ else {
               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtrz3QcnBjpBQ2TY8tZ-cisIp2BvrcoDc&callback=initMap&libraries=geometry">
       </script>    
   </body>
-</html> 
-  
+</html>
