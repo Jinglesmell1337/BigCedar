@@ -109,9 +109,8 @@ else {
     
     function set_my_position(position){
         old_position.setMap(null);
-       
+        var me = 'detective.png';
         var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-	var me = 'detective.png'
 	var marker = new google.maps.Marker({
                 position: pos,
 		map: BigCedar_map
