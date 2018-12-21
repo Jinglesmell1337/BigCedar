@@ -82,7 +82,6 @@
         old_position = new google.maps.Marker({
         position: {lat: 40.292633, lng: -74.658209},
         map: BigCedar_map,
-	icon: me
         });
         
         for (var i = 0; i < markers.length; i++) {
@@ -110,12 +109,10 @@ else {
     
     function set_my_position(position){
         old_position.setMap(null);
-        var me = 'detective.png';
         var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 	var marker = new google.maps.Marker({
                 position: pos,
 		map: BigCedar_map
-		icon: me
             });
         
         old_position = marker;
