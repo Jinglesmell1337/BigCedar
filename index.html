@@ -111,9 +111,10 @@ else {
         old_position.setMap(null);
        
         var pos = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+	var me = 'detective.png'
 	var marker = new google.maps.Marker({
                 position: pos,
-                map: BigCedar_map
+		map: BigCedar_map
             });
         
         old_position = marker;
